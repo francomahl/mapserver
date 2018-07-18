@@ -1,0 +1,45 @@
+MAP
+  NAME WCS_server
+  STATUS ON
+  PROJECTION
+    "init=epsg:4326"
+  END
+
+  MAXSIZE 10000
+  IMAGECOLOR 0 0 0
+
+  OUTPUTFORMAT
+    NAME "GEOTIFF"
+    DRIVER "GDAL/GTiff"
+    MIMETYPE "image/tiff"
+    IMAGEMODE "RGBA"
+    EXTENSION "tif"
+    FORMATOPTION "ALPHA=UNSPECIFIED"
+  END
+
+  WEB
+    METADATA
+      "wcs_label"           "WCS Server test"
+      "wcs_onlineresource"  "http://localhost:8080/?map=config.map&"
+      "wcs_enable_request"  "*"
+  END
+  END
+
+  LAYER
+    NAME "fband"
+    STATUS ON
+    TYPE RASTER
+    DATA "5band.tiff"
+    PROJECTION
+      AUTO
+    END
+    METADATA
+      "wcs_label" "fband"
+      "wcs_extent" "-180 -90 180 90"
+      "wcs_resolution" "1 1"
+      "wcs_bandcount" "5"
+      "wcs_interval" "0 255"
+    END
+  END
+
+END
